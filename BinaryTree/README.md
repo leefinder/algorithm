@@ -1,5 +1,8 @@
 # 二叉树
 
+- DFS（深度优先搜索）：沿着根节点递归下去，遇到叶子节点则向上回溯；
+- BFS (广度优先搜索)：按照二叉树的层次访问，通常采用队列保存每个层次的节点。
+
 ## 构建二叉树
 
 ```
@@ -64,8 +67,8 @@ const preorderTraversal = (root, result = []) {
 
 - 从根节点开始访问
 - 访问目标节点的值
-- 左子树存入栈中,直到左子树为null
-- 节点出栈,开始访问右子树,重复上述步骤
+- 左子树存入栈中，直到左子树为null
+- 节点出栈，开始访问右子树，重复上述步骤
 
 ```
 // 非递归
@@ -139,7 +142,7 @@ const postorderTraversal = function (root, result = []) {
 }
 ```
 
-> 非递归实现
+> 非递归实现1
 
 ```
 const postorderTraversal = function (root) {
@@ -166,4 +169,27 @@ const postorderTraversal = function (root) {
     }
     return result;
 }
+```
+
+> 非递归实现2
+
+- 后序遍历打印时左子树->右子树->根节点
+- 反过来思考，先输入根节点->右子树->左子树，然后再反转
+
+```
+const postorderTraversal = (root) {
+    const result = [];
+    if (!root) {
+        return result;
+    }
+    const stack = [root];
+    while (stack.length > 0) {
+        const t = stack.pop();
+        result.push(t.val);
+        stack.push(t.left);
+        stack.push(t.right);
+    }
+    return result.reverse();
+}
+
 ```
