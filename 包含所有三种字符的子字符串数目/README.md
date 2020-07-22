@@ -2,6 +2,12 @@
 
 > 给你一个字符串 s ，它只包含三种字符 a, b 和 c 。请你返回 a，b 和 c 都 至少 出现过一次的子字符串数目。
 
+```
+输入：s = "abcabc"
+输出：10
+解释：包含 a，b 和 c 各至少一次的子字符串为 "abc", "abca", "abcab", "abcabc", "bca", "bcab", "bcabc", "cab", "cabc" 和 "abc" (相同字符串算多次)。
+
+```
 
 - 时间复杂度过高没通过
 
@@ -29,7 +35,7 @@ var numberOfSubstrings = function(s) {
 
 ```
 var numberOfSubstrings = function(s) {
-    let index1 = 0;
+    let index1 = 0; // 字符串s的下标
     let index2 = 0;
     let count = 0;
     let map = {
@@ -41,7 +47,7 @@ var numberOfSubstrings = function(s) {
     while (index1 < s.length) {
         map[s[index1]]++;
         while (map.a > 0 && map.b > 0 && map.c > 0) {
-            count += s.length - index1;
+            count += s.length - index1; // 'abcccc'
             map[s[index2]]--;
             index2++; 
         }
