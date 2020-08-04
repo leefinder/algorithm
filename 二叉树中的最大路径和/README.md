@@ -29,9 +29,12 @@ var maxPathSum = function(root) {
     let max = Number.MIN_SAFE_INTEGER;
     var maxPathSumHelp = function (root) {
         if (root) {
+            // 左、右子树最大和与0比较，负数舍弃
             let left = Math.max(0, maxPathSumHelp(root.left))
             let right = Math.max(0, maxPathSumHelp(root.right))
+            // 尝试获取最大和
             max = Math.max(max, root.val + left + right)
+            // 对于根节点最大和，根节点的值＋左右子树较大的和
             return root.val + Math.max(left, right)
         } else {
             return 0
